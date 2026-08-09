@@ -1,29 +1,30 @@
-package com.example.Rental.models;
+package com.example.rental.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.example.rental.enums.RentalStatus;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Entity
-@Data
+@Table(name = "rentals")
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Rental {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private int userId;
-    private int item;
+    private Long id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Item item;
     private LocalDate startDate;
     private LocalDate expectedReturnDate;
     private LocalDate actualReturnDate;
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private RentalStatus status;
 
 }

@@ -1,27 +1,29 @@
-package com.example.Rental.models;
+package com.example.rental.models;
 
+import com.example.rental.enums.UserRole;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "users")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String firstName;
     private String lastName;
+    @Column(unique = true)
     private String email;
     private String password;
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
     private LocalDateTime createdAt;
 
 }

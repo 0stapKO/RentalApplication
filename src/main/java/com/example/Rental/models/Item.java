@@ -1,26 +1,26 @@
-package com.example.Rental.models;
+package com.example.rental.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.example.rental.enums.ItemStatus;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
-@Data
+@Table(name = "items")
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String name;
     private String description;
     private String category;
+    @Column(unique = true)
     private String inventoryNumber;
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private ItemStatus status;
 
 }
