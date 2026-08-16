@@ -7,9 +7,13 @@ import com.example.rental.exceptions.BusinessRuleException;
 import com.example.rental.exceptions.ResourceNotFoundException;
 import com.example.rental.models.Item;
 import com.example.rental.models.Rental;
+import com.example.rental.models.User;
+import com.example.rental.models.UserPrincipal;
 import com.example.rental.repos.ItemRepo;
 import com.example.rental.repos.RentalRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,9 +42,13 @@ public class RentalService {
 
         item.setStatus(ItemStatus.RENTED);
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+        User user = userPrincipal.getUser();
+
         Rental rental = new Rental(
                 null,
-                null,  // TODO: add user
+                user,
                 item,
                 LocalDate.now(),
                 rentalCreateRequest.getExpectedReturnDate(),

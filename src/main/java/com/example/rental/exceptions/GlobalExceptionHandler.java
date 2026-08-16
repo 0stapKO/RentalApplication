@@ -20,4 +20,12 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler
+    public ResponseEntity<ErrorResponse> handleBusinessRuleException(BusinessRuleException exception) {
+
+        ErrorResponse response = new ErrorResponse("Logic error", exception.getMessage(), LocalDateTime.now());
+
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
 }
