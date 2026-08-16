@@ -34,7 +34,7 @@ public class AuthService {
         user.setLastName(registerRequest.getLastName());
         user.setEmail(registerRequest.getEmail());
         user.setPassword(hashedPassword);
-        user.setRole(UserRole.USER);
+        user.setRole(UserRole.ROLE_USER);
         user.setCreatedAt(LocalDateTime.now());
 
         userRepo.save(user);

@@ -3,6 +3,7 @@ package com.example.rental.controllers;
 import com.example.rental.dto.RentalCreateRequest;
 import com.example.rental.models.Rental;
 import com.example.rental.services.RentalService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class RentalController {
     }
 
     @PostMapping
-    public ResponseEntity<Rental> addRental(@RequestBody RentalCreateRequest rentalCreateRequest) {
+    public ResponseEntity<Rental> addRental(@Valid @RequestBody RentalCreateRequest rentalCreateRequest) {
         Rental newRental = rentalService.addRental(rentalCreateRequest);
         return new ResponseEntity<>(newRental, HttpStatus.CREATED);
     }

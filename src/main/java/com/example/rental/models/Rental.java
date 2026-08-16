@@ -2,6 +2,8 @@ package com.example.rental.models;
 
 import com.example.rental.enums.RentalStatus;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -17,13 +19,20 @@ public class Rental {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Item item;
+
     private LocalDate startDate;
+
+    @NotNull(message = "Expected return date cannot be empty")
     private LocalDate expectedReturnDate;
+
     private LocalDate actualReturnDate;
+
     @Enumerated(EnumType.STRING)
     private RentalStatus status;
 

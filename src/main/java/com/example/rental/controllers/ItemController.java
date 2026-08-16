@@ -2,6 +2,7 @@ package com.example.rental.controllers;
 
 import com.example.rental.models.Item;
 import com.example.rental.services.ItemService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class ItemController {
     }
 
     @PostMapping
-    public ResponseEntity<Item> addItem(@RequestBody Item item) {
+    public ResponseEntity<Item> addItem(@Valid @RequestBody Item item) {
         Item newItem = itemService.addItem(item);
         return new ResponseEntity<>(newItem, HttpStatus.CREATED);
     }
