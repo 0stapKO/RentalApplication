@@ -20,7 +20,7 @@ public class RentalController {
     private final RentalService rentalService;
 
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<Rental>> getAllRentals() {
         List<Rental> rentals = rentalService.getAllRentals();
         return new ResponseEntity<>(rentals, HttpStatus.OK);

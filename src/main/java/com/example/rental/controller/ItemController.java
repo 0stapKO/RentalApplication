@@ -37,10 +37,24 @@ public class ItemController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Item> addItem(@Valid @RequestBody Item item) {
         Item newItem = itemService.addItem(item);
         return new ResponseEntity<>(newItem, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Item> editItem(@PathVariable Long id, @RequestBody Item item) {
+        Item changedItem = itemService.editItem(id, item);
+        return new ResponseEntity<>(changedItem, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Void> deleteItem(@PathVariable Long id) {
+        itemService.deleteItem(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
