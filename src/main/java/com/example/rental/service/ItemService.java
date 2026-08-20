@@ -1,10 +1,10 @@
-package com.example.rental.services;
+package com.example.rental.service;
 
 import com.example.rental.enums.ItemCategory;
 import com.example.rental.enums.ItemStatus;
-import com.example.rental.exceptions.ResourceNotFoundException;
-import com.example.rental.models.Item;
-import com.example.rental.repos.ItemRepo;
+import com.example.rental.exception.ResourceNotFoundException;
+import com.example.rental.entity.Item;
+import com.example.rental.repository.ItemRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

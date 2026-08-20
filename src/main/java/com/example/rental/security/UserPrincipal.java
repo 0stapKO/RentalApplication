@@ -1,5 +1,6 @@
-package com.example.rental.models;
+package com.example.rental.security;
 
+import com.example.rental.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

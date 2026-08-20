@@ -1,9 +1,9 @@
-package com.example.rental.controllers;
+package com.example.rental.controller;
 
 import com.example.rental.dto.AuthResponse;
 import com.example.rental.dto.LoginRequest;
 import com.example.rental.dto.RegisterRequest;
-import com.example.rental.services.AuthService;
+import com.example.rental.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

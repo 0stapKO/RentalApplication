@@ -1,9 +1,9 @@
-package com.example.rental.services;
+package com.example.rental.service;
 
-import com.example.rental.exceptions.ResourceNotFoundException;
-import com.example.rental.models.User;
-import com.example.rental.models.UserPrincipal;
-import com.example.rental.repos.UserRepo;
+import com.example.rental.exception.ResourceNotFoundException;
+import com.example.rental.entity.User;
+import com.example.rental.security.UserPrincipal;
+import com.example.rental.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

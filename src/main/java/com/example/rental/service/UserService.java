@@ -1,10 +1,9 @@
-package com.example.rental.services;
+package com.example.rental.service;
 
-import com.example.rental.models.Rental;
-import com.example.rental.models.User;
-import com.example.rental.models.UserPrincipal;
-import com.example.rental.repos.RentalRepo;
-import com.example.rental.repos.UserRepo;
+import com.example.rental.entity.Rental;
+import com.example.rental.entity.User;
+import com.example.rental.security.UserPrincipal;
+import com.example.rental.repository.RentalRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

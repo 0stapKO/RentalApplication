@@ -1,8 +1,8 @@
-package com.example.rental.repos;
+package com.example.rental.repository;
 
 import com.example.rental.enums.ItemCategory;
 import com.example.rental.enums.ItemStatus;
-import com.example.rental.models.Item;
+import com.example.rental.entity.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

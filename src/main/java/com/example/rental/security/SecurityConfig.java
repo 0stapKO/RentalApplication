@@ -1,4 +1,4 @@
-package com.example.rental.config;
+package com.example.rental.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

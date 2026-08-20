@@ -1,16 +1,16 @@
-package com.example.rental.services;
+package com.example.rental.service;
 
 import com.example.rental.dto.RentalCreateRequest;
 import com.example.rental.enums.ItemStatus;
 import com.example.rental.enums.RentalStatus;
-import com.example.rental.exceptions.BusinessRuleException;
-import com.example.rental.exceptions.ResourceNotFoundException;
-import com.example.rental.models.Item;
-import com.example.rental.models.Rental;
-import com.example.rental.models.User;
-import com.example.rental.models.UserPrincipal;
-import com.example.rental.repos.ItemRepo;
-import com.example.rental.repos.RentalRepo;
+import com.example.rental.exception.BusinessRuleException;
+import com.example.rental.exception.ResourceNotFoundException;
+import com.example.rental.entity.Item;
+import com.example.rental.entity.Rental;
+import com.example.rental.entity.User;
+import com.example.rental.security.UserPrincipal;
+import com.example.rental.repository.ItemRepo;
+import com.example.rental.repository.RentalRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.security.core.Authentication;

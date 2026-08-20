@@ -1,4 +1,4 @@
-package com.example.rental.exceptions;
+package com.example.rental.exception;
 
 public class ResourceNotFoundException  extends RuntimeException{
 

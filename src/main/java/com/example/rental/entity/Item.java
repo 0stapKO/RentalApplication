@@ -1,4 +1,4 @@
-package com.example.rental.models;
+package com.example.rental.entity;
 
 import com.example.rental.enums.ItemCategory;
 import com.example.rental.enums.ItemStatus;

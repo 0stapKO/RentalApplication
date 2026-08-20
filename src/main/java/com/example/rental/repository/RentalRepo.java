@@ -1,6 +1,6 @@
-package com.example.rental.repos;
+package com.example.rental.repository;
 
-import com.example.rental.models.Rental;
+import com.example.rental.entity.Rental;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

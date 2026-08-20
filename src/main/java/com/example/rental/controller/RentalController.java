@@ -1,8 +1,8 @@
-package com.example.rental.controllers;
+package com.example.rental.controller;
 
 import com.example.rental.dto.RentalCreateRequest;
-import com.example.rental.models.Rental;
-import com.example.rental.services.RentalService;
+import com.example.rental.entity.Rental;
+import com.example.rental.service.RentalService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

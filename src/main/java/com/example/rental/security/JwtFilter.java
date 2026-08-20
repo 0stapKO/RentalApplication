@@ -1,7 +1,7 @@
-package com.example.rental.config;
+package com.example.rental.security;
 
-import com.example.rental.services.JwtService;
-import com.example.rental.services.MyUserDetailsService;
+import com.example.rental.service.JwtService;
+import com.example.rental.service.MyUserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

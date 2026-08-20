@@ -1,15 +1,14 @@
-package com.example.rental.services;
+package com.example.rental.service;
 
 import com.example.rental.dto.AuthResponse;
 import com.example.rental.dto.LoginRequest;
 import com.example.rental.dto.RegisterRequest;
 import com.example.rental.enums.UserRole;
-import com.example.rental.models.User;
-import com.example.rental.repos.UserRepo;
+import com.example.rental.entity.User;
+import com.example.rental.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

@@ -1,12 +1,11 @@
-package com.example.rental.controllers;
+package com.example.rental.controller;
 
 import com.example.rental.enums.ItemCategory;
 import com.example.rental.enums.ItemStatus;
-import com.example.rental.models.Item;
-import com.example.rental.services.ItemService;
+import com.example.rental.entity.Item;
+import com.example.rental.service.ItemService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

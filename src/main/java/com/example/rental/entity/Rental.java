@@ -1,8 +1,7 @@
-package com.example.rental.models;
+package com.example.rental.entity;
 
 import com.example.rental.enums.RentalStatus;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
