@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,6 +28,10 @@ public class ItemService {
     }
 
     public Item addItem(Item item) {
+
+        Optional<Item> existingItem = itemRepo.findByInventoryNumber(item.getInventoryNumber());
+        if(existingItem.isPresent()) throw new BusinessRuleException("Item with such inventory number already exists");
+
         return itemRepo.save(item);
     }
 

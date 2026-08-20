@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ItemRepo extends JpaRepository<Item, Long> {
@@ -22,4 +23,6 @@ public interface ItemRepo extends JpaRepository<Item, Long> {
             @Param("status") ItemStatus status,
             @Param("category")ItemCategory category
             );
+
+    Optional<Item> findByInventoryNumber(String inventoryNumber);
 }
