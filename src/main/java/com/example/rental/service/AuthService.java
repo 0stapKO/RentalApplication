@@ -5,6 +5,7 @@ import com.example.rental.dto.LoginRequest;
 import com.example.rental.dto.RegisterRequest;
 import com.example.rental.enums.UserRole;
 import com.example.rental.entity.User;
+import com.example.rental.exception.BusinessRuleException;
 import com.example.rental.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +26,10 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
 
     public AuthResponse register(RegisterRequest registerRequest) {
+
+        Optional<User> existingUser = userRepo.findByEmail(registerRequest.getEmail());
+
+        if(existingUser.isPresent()) throw new BusinessRuleException("User with such email already exists");
 
         String hashedPassword = passwordEncoder.encode(registerRequest.getPassword());
 
