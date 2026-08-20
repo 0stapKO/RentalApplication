@@ -19,8 +19,6 @@ public class JwtService {
 
     public String generateToken(String email) {
 
-        Map<String, Object> claims = new HashMap<>();
-
         return Jwts.builder()
                 .subject(email)
                 .issuedAt(new Date(System.currentTimeMillis()))
