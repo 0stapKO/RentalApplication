@@ -2,12 +2,12 @@ package com.example.rental.dto;
 
 import com.example.rental.enums.UserRole;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class UserResponse {
 
     private Long id;
