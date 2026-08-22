@@ -3,6 +3,7 @@ package com.example.rental.service;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,8 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    private final String SECRET = "AVerySecretKeyThatWillKeepMyApplicationSafeAndSoundFromAllTheHackersOutThereWhoDreamOfStealingMyUsersPersonalData";
+    @Value("${jwt.secret}")
+    private String SecretKey;
 
     public String generateToken(String email) {
 
@@ -26,7 +28,7 @@ public class JwtService {
     }
 
     private Key getKey() {
-        byte[] keyBytes = SECRET.getBytes();
+        byte[] keyBytes = SecretKey.getBytes();
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
