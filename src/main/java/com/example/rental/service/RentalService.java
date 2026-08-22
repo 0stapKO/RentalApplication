@@ -28,7 +28,6 @@ public class RentalService {
 
     private final RentalRepo rentalRepo;
     private final ItemRepo itemRepo;
-    private final ApplicationContext applicationContext;
 
     public List<Rental> getAllRentals() {
         return rentalRepo.findAll();
