@@ -1,6 +1,7 @@
 package com.example.rental.service;
 
 import com.example.rental.dto.RentalCreateRequest;
+import com.example.rental.dto.RentalResponse;
 import com.example.rental.entity.Item;
 import com.example.rental.entity.Rental;
 import com.example.rental.entity.User;
@@ -71,6 +72,7 @@ class RentalServiceTest {
         when(userPrincipal.getUser()).thenReturn(user);
 
         when(itemRepo.findById(itemId)).thenReturn(Optional.of(item));
+        when(rentalRepo.save(any(Rental.class))).thenReturn(new Rental());
 
         rentalService.addRental(rentalCreateRequest);
 
@@ -114,8 +116,11 @@ class RentalServiceTest {
 
         Long rentalId = 1L;
         Long userId = 1L;
+        Long itemId = 1L;
 
         Item item = new Item();
+        item.setId(itemId);
+        item.setStatus(ItemStatus.RENTED);
 
         User user = new User();
         user.setId(userId);
@@ -137,7 +142,7 @@ class RentalServiceTest {
 
         when(rentalRepo.findById(rentalId)).thenReturn(Optional.of(rental));
 
-        Rental resultRental = rentalService.returnRental(1L);
+        RentalResponse resultRental = rentalService.returnRental(1L);
 
         assertEquals(RentalStatus.RETURNED, resultRental.getStatus());
         assertNotNull(resultRental.getActualReturnDate());

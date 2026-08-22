@@ -2,6 +2,7 @@ package com.example.rental.controller;
 
 import com.example.rental.dto.RentalCreateRequest;
 import com.example.rental.entity.Rental;
+import com.example.rental.mapper.RentalMapper;
 import com.example.rental.security.JwtFilter;
 import com.example.rental.service.JwtService;
 import com.example.rental.service.RentalService;
@@ -55,7 +56,7 @@ class RentalControllerTest {
         rental.setId(rentalId);
         rental.setExpectedReturnDate(expectedReturnDate);
 
-        when(rentalService.addRental(rentalCreateRequest)).thenReturn(rental);
+        when(rentalService.addRental(rentalCreateRequest)).thenReturn(RentalMapper.toRentalResponse(rental));
 
         mockMvc.perform(post("/api/rentals")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -69,7 +70,6 @@ class RentalControllerTest {
     void addRentalShouldReturn400ReturnDateNotInFuture() throws Exception {
 
         Long itemId = 1L;
-        Long rentalId = 1L;
         LocalDate expectedReturnDate = LocalDate.now();
 
         RentalCreateRequest rentalCreateRequest = new RentalCreateRequest(
@@ -95,7 +95,7 @@ class RentalControllerTest {
         Rental rental = new Rental();
         rental.setId(rentalId);
 
-        when(rentalService.returnRental(rentalId)).thenReturn(rental);
+        when(rentalService.returnRental(rentalId)).thenReturn(RentalMapper.toRentalResponse(rental));
 
         mockMvc.perform(post("/api/rentals/{id}/return", rentalId)
                 .contentType(MediaType.APPLICATION_JSON))

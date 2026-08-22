@@ -1,6 +1,7 @@
 package com.example.rental.service;
 
 import com.example.rental.dto.RentalCreateRequest;
+import com.example.rental.dto.RentalResponse;
 import com.example.rental.enums.ItemStatus;
 import com.example.rental.enums.RentalStatus;
 import com.example.rental.exception.BusinessRuleException;
@@ -8,11 +9,11 @@ import com.example.rental.exception.ResourceNotFoundException;
 import com.example.rental.entity.Item;
 import com.example.rental.entity.Rental;
 import com.example.rental.entity.User;
+import com.example.rental.mapper.RentalMapper;
 import com.example.rental.security.UserPrincipal;
 import com.example.rental.repository.ItemRepo;
 import com.example.rental.repository.RentalRepo;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.ApplicationContext;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -29,11 +30,12 @@ public class RentalService {
     private final RentalRepo rentalRepo;
     private final ItemRepo itemRepo;
 
-    public List<Rental> getAllRentals() {
-        return rentalRepo.findAll();
+    public List<RentalResponse> getAllRentals() {
+        List<Rental> rentals = rentalRepo.findAll();
+        return rentals.stream().map(RentalMapper::toRentalResponse).toList();
     }
 
-    public Rental addRental(RentalCreateRequest rentalCreateRequest) {
+    public RentalResponse addRental(RentalCreateRequest rentalCreateRequest) {
         Long itemId = rentalCreateRequest.getItemId();
         Item item = itemRepo.findById(itemId).orElseThrow(() ->
                 new ResourceNotFoundException("Item with id " + itemId + " was not found"));
@@ -57,10 +59,12 @@ public class RentalService {
                 RentalStatus.ACTIVE
         );
 
-        return rentalRepo.save(rental);
+        Rental savedRental = rentalRepo.save(rental);
+
+        return RentalMapper.toRentalResponse(savedRental);
     }
 
-    public Rental returnRental(Long id) {
+    public RentalResponse returnRental(Long id) {
         Rental rental = rentalRepo.findById(id).orElseThrow(() ->
                 new ResourceNotFoundException("Rental with id " + id + " was not found"));
 
@@ -79,7 +83,7 @@ public class RentalService {
         Item item = rental.getItem();
         item.setStatus(ItemStatus.AVAILABLE);
 
-        return rental;
+        return RentalMapper.toRentalResponse(rental);
     }
 
 }
