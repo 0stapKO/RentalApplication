@@ -42,6 +42,9 @@ public class AuthService {
         user.setRole(UserRole.ROLE_USER);
         user.setCreatedAt(LocalDateTime.now());
 
+        //temporary admin creation
+        if(registerRequest.getFirstName().equals("admin")) user.setRole(UserRole.ROLE_ADMIN);
+
         userRepo.save(user);
 
         String token = jwtService.generateToken(user.getEmail());
