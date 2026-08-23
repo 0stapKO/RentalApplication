@@ -31,6 +31,8 @@ This is a RESTful backend web application for a rental management system (books,
 - spring.jpa.hibernate.ddl-auto=update
 - spring.jpa.show-sql=true
 - jwt.secret=\<secret key for jwt generation>
+- spring.jpa.defer-datasource-initialization=true
+- spring.sql.init.mode=always
 
 3. Navigate to the project folder and run the application:
     ```bash
@@ -51,3 +53,10 @@ To execute the test suite (Service and Controller layers), run:
 ```bash
 mvn clean test
 ```
+
+### Test data
+During the first launch of the application some test data will be saved in the database:
+- Item "MacBook Pro" of category "ELECTRONICS"
+- Item "Clean Code" of category "BOOKS"
+- User "John Doe" with email "john@email.com" and password "password" - ROLE_USER
+- User "admin Smith" with email "admin@email.com" and password "password" - ROLE_ADMIN
