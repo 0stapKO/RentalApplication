@@ -1,0 +1,85 @@
+### Register a new user
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "firstName": "Taras",
+  "lastName": "Shevchenko",
+  "email": "taras@email.com",
+  "password": "password"
+}
+
+### Login
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@email.com",
+  "password": "password"
+}
+
+### Get all items (Public)
+GET http://localhost:8080/api/items
+
+### Get an item by id (Public)
+GET http://localhost:8080/api/items/1
+
+### Add a new item (Requires Admin Token)
+# Replace <YOUR_TOKEN_HERE> with the token received from login
+POST http://localhost:8080/api/items
+Content-Type: application/json
+Authorization: Bearer <YOUR_TOKEN_HERE>
+
+{
+  "name": "Projector",
+  "description": "Sony 4K",
+  "category": "ELECTRONICS",
+  "inventoryNumber": "INV-003",
+  "status": "AVAILABLE"
+}
+
+### Edit item (Requires Admin Token)
+# Replace <YOUR_TOKEN_HERE> with the token received from login
+PUT http://localhost:8080/api/items/3
+Content-Type: application/json
+Authorization: Bearer <YOUR_TOKEN_HERE>
+
+{
+  "name": "Projector",
+  "description": "Sony 4K HDR",
+  "category": "ELECTRONICS",
+  "inventoryNumber": "INV-003",
+  "status": "AVAILABLE"
+}
+
+### Delete item (Requires Admin Token)
+# Replace <YOUR_TOKEN_HERE> with the token received from login
+DELETE http://localhost:8080/api/items/3
+Content-Type: application/json
+Authorization: Bearer <YOUR_TOKEN_HERE>
+
+### Rent an item (Requires Token)
+POST http://localhost:8080/api/rentals
+Content-Type: application/json
+Authorization: Bearer <YOUR_TOKEN_HERE>
+
+{
+  "itemId": 2,
+  "expectedReturnDate": "2026-09-01"
+}
+
+### Return an item (Requires Token of the User who rented the Item)
+POST http://localhost:8080/api/rentals/1/return
+Authorization: Bearer <YOUR_TOKEN_HERE>
+
+### Get all rentals (Requires Admin Token)
+GET http://localhost:8080/api/rentals
+Authorization: Bearer <YOUR_TOKEN_HERE>
+
+### Get all user's rentals (Requires Token)
+GET http://localhost:8080/api/users/me/rentals
+Authorization: Bearer <YOUR_TOKEN_HERE>
+
+### Set user's role to admin (Requires Admin Token)
+PUT http://localhost:8080/api/users/2/make-admin
+Authorization: Bearer <YOUR_TOKEN_HERE>
