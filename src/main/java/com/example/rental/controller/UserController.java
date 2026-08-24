@@ -1,5 +1,6 @@
 package com.example.rental.controller;
 
+import com.example.rental.dto.RentalResponse;
 import com.example.rental.dto.UserResponse;
 import com.example.rental.entity.Rental;
 import com.example.rental.entity.User;
@@ -24,8 +25,8 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/me/rentals")
-    public ResponseEntity<List<Rental>> getUserRentals() {
-        List<Rental> rentals = userService.getUserRentals();
+    public ResponseEntity<List<RentalResponse>> getUserRentals() {
+        List<RentalResponse> rentals = userService.getUserRentals();
         return new ResponseEntity<>(rentals, HttpStatus.FOUND);
     }
 

@@ -1,11 +1,13 @@
 package com.example.rental.service;
 
+import com.example.rental.dto.RentalResponse;
 import com.example.rental.dto.UserResponse;
 import com.example.rental.entity.Rental;
 import com.example.rental.entity.User;
 import com.example.rental.enums.UserRole;
 import com.example.rental.exception.BusinessRuleException;
 import com.example.rental.exception.ResourceNotFoundException;
+import com.example.rental.mapper.RentalMapper;
 import com.example.rental.mapper.UserMapper;
 import com.example.rental.repository.UserRepo;
 import com.example.rental.security.UserPrincipal;
@@ -24,11 +26,12 @@ public class UserService {
     private final RentalRepo rentalRepo;
     private final UserRepo userRepo;
 
-    public List<Rental> getUserRentals() {
+    public List<RentalResponse> getUserRentals() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
         User currentUser = principal.getUser();
-        return rentalRepo.findAllByUserId(currentUser.getId());
+        List<Rental> rentals = rentalRepo.findAllByUserId(currentUser.getId());
+        return rentals.stream().map(RentalMapper::toRentalResponse).toList();
     }
 
     public UserResponse makeUserAdmin(Long id) {
