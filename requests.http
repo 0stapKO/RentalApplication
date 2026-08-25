@@ -83,3 +83,7 @@ Authorization: Bearer <YOUR_TOKEN_HERE>
 ### Set user's role to admin (Requires Admin Token)
 PUT http://localhost:8080/api/users/2/make-admin
 Authorization: Bearer <YOUR_TOKEN_HERE>
+
+### Get all users (Requires Admin Token)
+GET http://localhost:8080/api/users
+Authorization: Bearer <YOUR_TOKEN_HERE>

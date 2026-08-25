@@ -27,7 +27,7 @@ public class UserController {
     @GetMapping("/me/rentals")
     public ResponseEntity<List<RentalResponse>> getUserRentals() {
         List<RentalResponse> rentals = userService.getUserRentals();
-        return new ResponseEntity<>(rentals, HttpStatus.FOUND);
+        return new ResponseEntity<>(rentals, HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -35,6 +35,13 @@ public class UserController {
     public ResponseEntity<UserResponse> makeUserAdmin(@PathVariable Long id) {
         UserResponse user = userService.makeUserAdmin(id);
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping
+    public ResponseEntity<List<UserResponse>> getAllUsers() {
+        List<UserResponse> users = userService.getAllUsers();
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
 }

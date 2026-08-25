@@ -47,4 +47,9 @@ public class UserService {
 
         return UserMapper.toUserResponse(userAdmin);
     }
+
+    public List<UserResponse> getAllUsers() {
+        List<User> users = userRepo.findAll();
+        return users.stream().map(UserMapper::toUserResponse).toList();
+    }
 }
